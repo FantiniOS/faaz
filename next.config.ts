@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  /* Desativa o indicador flutuante com a letra "N" do Next.js dev */
+  devIndicators: false,
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {

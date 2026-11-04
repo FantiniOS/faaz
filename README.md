@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Clínica FAAZ — Landing Page Oficial
 
-## Getting Started
+Landing page moderna de alto impacto para a **Clínica FAAZ** (Belo Horizonte - MG), especializada em **Endocrinologia Avançada** e **Cirurgia Plástica**, integrando a tecnologia proprietária do aplicativo **EnDoc 2.0** para acompanhamento médico contínuo de pacientes de endocrinologia.
 
-First, run the development server:
+---
+
+## 🏛️ Sobre o Projeto
+
+- **Localização:** Belo Horizonte - MG (Consultas 100% Presenciais).
+- **Especialidades:**
+  - **Endocrinologia Avançada:** Avaliação física estendida, bioimpedância hospitalar segmentada, colocação de sensor CGM e acompanhamento diário via aplicativo EnDoc 2.0.
+  - **Cirurgia Plástica:** Procedimentos de contorno corporal (Lipo HD, Mastopexia Dual Plane, Abdominoplastia com reparo de diástase, Cirurgia Facial Deep Plane) executados exclusivamente em hospitais acreditados com suporte total de CTI/UTI em Belo Horizonte.
+- **Tecnologias:** Next.js (App Router), TypeScript, Tailwind CSS, Lucide Icons.
+
+---
+
+## 🚀 Como Executar Localmente
 
 ```bash
+# Instalar dependências
+npm install
+
+# Iniciar servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ☁️ Deploy na Vercel
 
-## Learn More
+O projeto está pronto para deploy automático em produção na Vercel:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Importe o repositório em [vercel.com/new](https://vercel.com/new).
+2. O preset `Next.js` será detectado automaticamente.
+3. Clique em **Deploy**.

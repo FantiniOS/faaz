@@ -162,7 +162,11 @@ export default function Home() {
       {/* TOP ANNOUNCEMENT BAR */}
       <div className="relative z-30 bg-gradient-to-r from-emerald-950/90 via-[#0a1714] to-emerald-950/90 border-b border-emerald-500/20 text-center py-2 px-3 sm:px-4">
         <p className="text-[11px] sm:text-xs md:text-sm text-emerald-200 font-medium flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse flex-shrink-0" />
+          <img
+            src="/logo-faaz.png"
+            alt="Logo FAAZ"
+            className="w-4 h-4 object-contain inline-block flex-shrink-0 filter drop-shadow"
+          />
           <span><strong>Clínica FAAZ</strong>: Consultas presenciais em Belo Horizonte com acompanhamento no App</span>
           <span className="hidden md:inline text-emerald-400 font-bold">•</span>
           <a
@@ -180,11 +184,13 @@ export default function Home() {
       <header className="relative z-40 border-b border-white/[0.08] backdrop-blur-xl bg-[#06090a]/90 sticky top-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
           {/* Logo & Brand Clínica FAAZ */}
-          <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-emerald-300 p-[1.5px] shadow-md shadow-emerald-500/20">
-              <div className="w-full h-full bg-[#080d0f] rounded-[10px] flex items-center justify-center font-black text-xs sm:text-sm text-emerald-400">
-                FAAZ
-              </div>
+          <Link href="/" className="flex items-center gap-3.5 group flex-shrink-0">
+            <div className="relative w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center flex-shrink-0">
+              <img
+                src="/logo-faaz.png"
+                alt="Clínica FAAZ Logo"
+                className="w-full h-full object-contain filter drop-shadow-[0_0_14px_rgba(212,175,55,0.4)] group-hover:scale-105 group-hover:drop-shadow-[0_0_18px_rgba(212,175,55,0.6)] transition-all duration-300"
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-black text-lg sm:text-xl tracking-tight text-white leading-none">
@@ -335,8 +341,12 @@ export default function Home() {
               {/* Coluna de Texto Principal */}
               <div className="lg:col-span-7 flex flex-col items-start text-left">
                 {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-950/60 text-emerald-300 text-xs sm:text-sm font-semibold mb-6 backdrop-blur-md shadow-inner shadow-emerald-500/20">
-                  <Sparkles className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-950/60 text-emerald-300 text-xs sm:text-sm font-semibold mb-6 backdrop-blur-md shadow-inner shadow-emerald-500/20">
+                  <img
+                    src="/logo-faaz.png"
+                    alt="Logo FAAZ"
+                    className="w-4 h-4 object-contain filter drop-shadow flex-shrink-0"
+                  />
                   <span>ENDOCRINOLOGIA & CIRURGIA PLÁSTICA • BELO HORIZONTE</span>
                 </div>
 
@@ -725,8 +735,12 @@ export default function Home() {
                       </span>
                       <span className="text-xs font-bold text-white">Olá, Paciente FAAZ 👋</span>
                     </div>
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold text-[9px] sm:text-[10px]">
-                      FAAZ
+                    <div className="w-7 h-7 flex items-center justify-center flex-shrink-0">
+                      <img
+                        src="/logo-faaz.png"
+                        alt="Logo FAAZ"
+                        className="w-full h-full object-contain filter drop-shadow"
+                      />
                     </div>
                   </div>
 
@@ -1214,8 +1228,12 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Header da Seção */}
             <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-widest mb-4 shadow-sm shadow-cyan-500/20">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-widest mb-4 shadow-sm shadow-cyan-500/20">
+                <img
+                  src="/logo-faaz.png"
+                  alt="Logo FAAZ"
+                  className="w-4 h-4 object-contain filter drop-shadow flex-shrink-0"
+                />
                 <span>Cirurgia Plástica • Belo Horizonte</span>
               </div>
               <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight">
@@ -1872,11 +1890,13 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-white/[0.06]">
             {/* Coluna 1: Clínica FAAZ */}
             <div className="space-y-4 md:col-span-2">
-              <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 p-[1.5px]">
-                  <div className="w-full h-full bg-[#080d0f] rounded-[10px] flex items-center justify-center font-black text-xs text-emerald-400">
-                    FAAZ
-                  </div>
+              <div className="flex items-center gap-3.5">
+                <div className="relative w-11 h-11 flex items-center justify-center flex-shrink-0">
+                  <img
+                    src="/logo-faaz.png"
+                    alt="Clínica FAAZ"
+                    className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(212,175,55,0.35)]"
+                  />
                 </div>
                 <span className="font-extrabold text-xl tracking-tight text-white">
                   CLÍNICA <span className="text-emerald-400">FAAZ</span>

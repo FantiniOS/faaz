@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     "EnDoc 2.0",
   ],
   authors: [{ name: "Clínica FAAZ" }],
+  icons: {
+    icon: "/logo-faaz.png",
+    shortcut: "/logo-faaz.png",
+    apple: "/logo-faaz.png",
+  },
 };
 
 export default function RootLayout({

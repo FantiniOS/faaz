@@ -68,6 +68,8 @@ export default function Home() {
   const phoneNumber = "(31) 98440-0076";
   const whatsappUrl =
     "https://wa.me/5531984400076?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20presencial%20na%20Cl%C3%ADnica%20FAAZ.";
+  const whatsappCirurgiaUrl =
+    "https://wa.me/5531984400076?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20em%20Cirurgia%20Pl%C3%A1stica%20na%20Cl%C3%ADnica%20FAAZ%20em%20Belo%20Horizonte.";
 
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -195,12 +197,16 @@ export default function Home() {
           </Link>
 
           {/* Navegação Desktop (Aparece apenas em telas grandes sem encavalar) */}
-          <nav className="hidden xl:flex items-center gap-6 2xl:gap-8 text-sm text-zinc-300 font-medium">
+          <nav className="hidden xl:flex items-center gap-5 2xl:gap-7 text-sm text-zinc-300 font-medium">
             <a href="#a-clinica" className="hover:text-emerald-400 transition-colors">
               A Clínica
             </a>
             <a href="#especialidades" className="hover:text-emerald-400 transition-colors">
               Especialidades
+            </a>
+            <a href="#cirurgia-plastica" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5 font-semibold text-cyan-300">
+              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Cirurgia Plástica</span>
             </a>
             <a href="#app-showcase" className="hover:text-emerald-400 transition-colors">
               App Exclusivo
@@ -258,6 +264,17 @@ export default function Home() {
               >
                 <span>Especialidades Médicas</span>
                 <ChevronDown className="w-4 h-4 -rotate-90 text-zinc-500" />
+              </a>
+              <a
+                href="#cirurgia-plastica"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 border-b border-white/[0.06] text-cyan-300 hover:text-cyan-200 transition-colors flex items-center justify-between"
+              >
+                <span className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-cyan-400" />
+                  <span>Cirurgia Plástica</span>
+                </span>
+                <ChevronDown className="w-4 h-4 -rotate-90 text-cyan-500" />
               </a>
               <a
                 href="#app-showcase"
@@ -1132,12 +1149,10 @@ export default function Home() {
                   </ul>
                 </div>
                 <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#cirurgia-plastica"
                   className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors pt-4 border-t border-white/[0.06]"
                 >
-                  <span>Consulta com Cirurgião Plástico</span>
+                  <span>Conhecer Procedimentos & Segurança</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -1186,6 +1201,334 @@ export default function Home() {
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SEÇÃO ÉPICA: CIRURGIA PLÁSTICA DE ALTA PRECISÃO */}
+        <section id="cirurgia-plastica" className="py-20 sm:py-24 md:py-32 border-t border-cyan-500/20 bg-gradient-to-b from-[#04080a] via-[#060b0d] to-[#05080a] relative overflow-hidden">
+          {/* Ambient light glow effects */}
+          <div className="pointer-events-none absolute -top-40 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+          <div className="pointer-events-none absolute bottom-10 left-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Header da Seção */}
+            <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-widest mb-4 shadow-sm shadow-cyan-500/20">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+                <span>Cirurgia Plástica • Belo Horizonte</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight">
+                Harmonia Corporal & Arte Cirúrgica de Alta Precisão
+              </h2>
+              <p className="text-zinc-300 mt-4 sm:mt-5 text-sm sm:text-base md:text-lg leading-relaxed">
+                Na Clínica FAAZ, a cirurgia plástica é planejada com rigor anatômico milimétrico e realizada exclusivamente nos hospitais mais bem equipados de Belo Horizonte. Unimos o talento cirúrgico refinado ao suporte metabólico pré e pós-operatório para resultados elegantes, naturais e com segurança inegociável.
+              </p>
+            </div>
+
+            {/* Grid dos 4 Procedimentos Principais */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-14 sm:mb-20">
+              {/* Procedimento 1: Lipo HD & Contorno Corporal */}
+              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#0c1619] via-[#080e10] to-[#05080a] border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 group shadow-xl flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
+                      Definição Anatômica 3D
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                      <Sparkles className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-3">
+                    Lipoaspiração HD & Contorno Corporal
+                  </h3>
+                  <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-6">
+                    Escultura detalhada das transições musculares anatômicas de abdômen, flancos, dorso e braços. Utilizamos tecnologias de retração dérmica para máxima aderência da pele e enxertia estruturada para harmonia da silhueta.
+                  </p>
+                  <ul className="space-y-2.5 text-xs text-zinc-300 mb-6">
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Linhas anatômicas elegantes e suaves sem estigmas artificiais</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Tecnologia de retração cutânea para minimizar a flacidez de pele</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Lipoenxertia glútea planejada para projeção anatômica equilibrada</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Mapeamento pré-cirúrgico da camada adiposa com foco em segurança vascular</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-cyan-300">Centro Hospitalar em BH</span>
+                  <a
+                    href={whatsappCirurgiaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >
+                    <span>Avaliar com Cirurgião</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Procedimento 2: Mastopexia & Implantes Mamários */}
+              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#0c1619] via-[#080e10] to-[#05080a] border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 group shadow-xl flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
+                      Sustentação Avançada
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                      <HeartPulse className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-3">
+                    Mastopexia & Próteses Dual Plane
+                  </h3>
+                  <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-6">
+                    Reposicionamento da mama com firmeza, contorno nobre e sustentação de longo prazo. Utilizamos a técnica Dual Plane associada a pontos de sustentação interna ('Sutiã Interno') com cicatrizes planejadas e discretas.
+                  </p>
+                  <ul className="space-y-2.5 text-xs text-zinc-300 mb-6">
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Colo desenhado com transição natural e sem aspecto de 'bola'</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Técnica de Sutiã Interno para ancoragem duradoura do polo inferior</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Próteses de padrão ouro com microtexturização e rastreabilidade total</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Cicatrizes reduzidas em L ou T curto com fios de alta precisão</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-cyan-300">Dual Plane & Sutiã Interno</span>
+                  <a
+                    href={whatsappCirurgiaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >
+                    <span>Avaliar com Cirurgião</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Procedimento 3: Abdominoplastia Funcional & Reparadora */}
+              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#0c1619] via-[#080e10] to-[#05080a] border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 group shadow-xl flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
+                      Reconstrução Muscular
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-3">
+                    Abdominoplastia & Fechamento de Diástase
+                  </h3>
+                  <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-6">
+                    Correção anatômica do afastamento muscular dos retos abdominais causado por gestações ou perda ponderal severa. Reconstrução da cinta abdominal, remoção do excedente de pele e confecção de cicatriz ultra-baixa.
+                  </p>
+                  <ul className="space-y-2.5 text-xs text-zinc-300 mb-6">
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Plicatura muscular reforçada para devolver estabilidade ao abdômen e lombar</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Umbigo delicado e anatomicamente proporcional sem marcas óbvias</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Incisão cirúrgica milimetricamente desenhada para ser coberta por biquínis</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Sinergia com controle metabólico endocrinológico para prevenir reganho</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-cyan-300">Plicatura de Diástase</span>
+                  <a
+                    href={whatsappCirurgiaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >
+                    <span>Avaliar com Cirurgião</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Procedimento 4: Cirurgia Facial & Blefaroplastia */}
+              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#0c1619] via-[#080e10] to-[#05080a] border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 group shadow-xl flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
+                      Rejuvenescimento Natural
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                      <Award className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-3">
+                    Deep Plane Face & Blefaroplastia Estruturada
+                  </h3>
+                  <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-6">
+                    Reposicionamento profundo dos ligamentos e camadas musculares faciais (SMAS / Deep Plane) sem tracionar a pele, associado ao tratamento milimétrico das pálpebras. Rejuvenescimento expressivo com naturalidade absoluta.
+                  </p>
+                  <ul className="space-y-2.5 text-xs text-zinc-300 mb-6">
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Sustentação pelas camadas profundas sem o estigma de face 'repuxada'</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Blefaroplastia superior e inferior para remoção de bolsas e olhar descansado</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Redefinição límpida do contorno mandibular e transição com o pescoço</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <span>Incisões anatômicas camufladas nos contornos da orelha e linha capilar</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-cyan-300">Deep Plane & Pálpebras</span>
+                  <a
+                    href={whatsappCirurgiaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+                  >
+                    <span>Avaliar com Cirurgião</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* BOX DE SEGURANÇA HOSPITALAR PADRÃO OURO EM BELO HORIZONTE */}
+            <div className="rounded-3xl border border-cyan-500/30 bg-gradient-to-br from-[#0c1619] via-[#091114] to-[#06090a] p-8 sm:p-12 md:p-14 shadow-2xl relative overflow-hidden mb-12">
+              <div className="max-w-3xl mb-8 sm:mb-10">
+                <span className="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold block mb-2">
+                  Segurança Inegociável • Protocolo FAAZ
+                </span>
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
+                  Por Que Operar com a Equipe de Cirurgia Plástica da Clínica FAAZ?
+                </h3>
+                <p className="text-zinc-300 text-sm sm:text-base mt-3 leading-relaxed">
+                  Não abrimos mão da sua vida e da sua integridade. Nossa conduta cirúrgica é estritamente pautada nos mais altos protocolos mundiais de segurança do paciente.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 mb-4">
+                      <Building2 className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-bold text-white mb-2">100% em Hospitais Acreditados de BH</h4>
+                    <p className="text-xs text-zinc-400 leading-relaxed">
+                      Nunca operamos em consultórios ou clínicas ambulatoriais. Toda intervenção cirúrgica é realizada em hospitais de grande porte com CTI/UTI e estrutura de retaguarda em Belo Horizonte.
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-mono text-cyan-400 mt-4 block">Hospitais de Referência</span>
+                </div>
+
+                <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 mb-4">
+                      <Activity className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-bold text-white mb-2">Anestesista Dedicado (SBA)</h4>
+                    <p className="text-xs text-zinc-400 leading-relaxed">
+                      Médico especialista em anestesiologia ao seu lado em tempo integral na sala operatória e na recuperação pós-anestésica, com monitorização cerebral e hemodinâmica contínua.
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-mono text-cyan-400 mt-4 block">Presença Ininterrupta</span>
+                </div>
+
+                <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 mb-4">
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-bold text-white mb-2">Profilaxia Ativa de Trombose (TVP)</h4>
+                    <p className="text-xs text-zinc-400 leading-relaxed">
+                      Botas de compressão pneumática intermitente durante todo o ato cirúrgico, meias antitrombo graduadas e protocolo profilático medicamentoso rigoroso.
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-mono text-cyan-400 mt-4 block">Proteção Máxima</span>
+                </div>
+
+                <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 mb-4">
+                      <Stethoscope className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-bold text-white mb-2">Sinergia Metabólica FAAZ</h4>
+                    <p className="text-xs text-zinc-400 leading-relaxed">
+                      Preparo laboratorial com suporte de endocrinologia para otimizar glicemia, micronutrientes, síntese de colágeno e acelerar a cicatrização no pós-operatório.
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-mono text-cyan-400 mt-4 block">Recuperação Acelerada</span>
+                </div>
+              </div>
+            </div>
+
+            {/* AVISO DE TRANSPARÊNCIA: APP É EXCLUSIVO PARA ENDOCRINOLOGIA */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/60 border border-zinc-700/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 flex-shrink-0 mt-0.5">
+                  <Lock className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-white">
+                    Nota de Acompanhamento: App EnDoc 2.0 Exclusivo da Endocrinologia
+                  </h4>
+                  <p className="text-[11px] sm:text-xs text-zinc-400 mt-1 leading-relaxed">
+                    O acompanhamento digital diário pelo aplicativo EnDoc 2.0 é exclusivo para os pacientes em tratamento de Endocrinologia Avançada. Na Cirurgia Plástica, todas as avaliações, revisões de pós-operatório, curativos e retiradas de pontos são realizadas presencialmente pela equipe cirúrgica em nossa clínica em Belo Horizonte.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA DA CIRURGIA PLÁSTICA */}
+            <div className="text-center">
+              <a
+                href={whatsappCirurgiaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-sm sm:text-base font-bold bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-black shadow-xl shadow-cyan-500/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <Calendar className="w-5 h-5" />
+                <span>Agendar Avaliação com o Cirurgião Plástico</span>
+              </a>
+              <p className="text-xs text-zinc-400 mt-3">
+                Consultas presenciais na Clínica FAAZ em Belo Horizonte - MG • Estacionamento com manobrista no local
+              </p>
             </div>
           </div>
         </section>

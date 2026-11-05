@@ -145,3 +145,60 @@ body {
   background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.8), transparent);
   animation: scanLine 3s ease-in-out infinite;
 }
+
+/* ===== NAVBAR PREMIUM ===== */
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(0) skewX(-20deg);
+  }
+  60%, 100% {
+    transform: translateX(400%) skewX(-20deg);
+  }
+}
+
+@keyframes shimmerSlow {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 6s linear infinite;
+}
+
+.animate-shimmer {
+  animation: shimmerSweep 3.2s ease-in-out infinite;
+}
+
+.animate-shimmer-slow {
+  animation: shimmerSlow 6s linear infinite;
+}
+
+.animate-menu-in {
+  animation: menuIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Compensa a navbar flutuante ao navegar pelas âncoras */
+section[id] {
+  scroll-margin-top: 96px;
+}

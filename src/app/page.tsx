@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
   Activity,
@@ -60,6 +60,114 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  // ===== Estado do menu superior =====
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
+  const [activeSection, setActiveSection] = useState<string>("");
+  const [megaOpen, setMegaOpen] = useState<boolean>(false);
+  const megaTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openMega = () => {
+    if (megaTimer.current) clearTimeout(megaTimer.current);
+    setMegaOpen(true);
+  };
+  const closeMega = () => {
+    if (megaTimer.current) clearTimeout(megaTimer.current);
+    megaTimer.current = setTimeout(() => setMegaOpen(false), 180);
+  };
+
+  // Navbar compacta ao rolar + barra de progresso de leitura
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 30);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(max > 0 ? Math.min(100, (y / max) * 100) : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Destaque automático da seção ativa no menu
+  useEffect(() => {
+    const ids = ["jornada-faaz", "cirurgia-plastica", "app-showcase", "a-clinica", "depoimentos", "faq"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const navLinks: { id: string; label: string; accent: "emerald" | "cyan" | "amber" }[] = [
+    { id: "cirurgia-plastica", label: "Cirurgia Plástica", accent: "cyan" },
+    { id: "app-showcase", label: "App EnDoc", accent: "amber" },
+    { id: "a-clinica", label: "A Clínica", accent: "emerald" },
+    { id: "depoimentos", label: "Resultados", accent: "emerald" },
+    { id: "faq", label: "Dúvidas", accent: "emerald" },
+  ];
+
+  const activeLinkClass = {
+    emerald: "text-emerald-800 bg-emerald-50 ring-1 ring-emerald-200",
+    cyan: "text-cyan-800 bg-cyan-50 ring-1 ring-cyan-200",
+    amber: "text-amber-800 bg-amber-50 ring-1 ring-amber-200",
+  };
+  const activeDotClass = {
+    emerald: "bg-emerald-500",
+    cyan: "bg-cyan-500",
+    amber: "bg-amber-500",
+  };
+
+  const megaItems: {
+    tab: "endocrino" | "cirurgia" | "app";
+    href: string;
+    img: string;
+    tag: string;
+    title: string;
+    desc: string;
+    tagClass: string;
+    linkClass: string;
+  }[] = [
+    {
+      tab: "endocrino",
+      href: "#jornada-faaz",
+      img: "/doctor-consultation.jpg",
+      tag: "Presencial + App",
+      title: "Endocrinologia Avançada",
+      desc: "Tireoide, metabolismo, hormônios e emagrecimento com bioimpedância.",
+      tagClass: "bg-emerald-500/90",
+      linkClass: "text-emerald-700",
+    },
+    {
+      tab: "cirurgia",
+      href: "#cirurgia-plastica",
+      img: "/body-contour.jpg",
+      tag: "100% Hospitalar",
+      title: "Cirurgia Plástica",
+      desc: "Lipo HD, mamas, abdominoplastia e face em hospitais de BH.",
+      tagClass: "bg-cyan-500/90",
+      linkClass: "text-cyan-700",
+    },
+    {
+      tab: "app",
+      href: "#app-showcase",
+      img: "/patient-vitality.jpg",
+      tag: "Exclusivo Endócrino",
+      title: "App EnDoc 2.0",
+      desc: "Glicemia, hábitos e chat com o médico 365 dias por ano.",
+      tagClass: "bg-amber-500/90",
+      linkClass: "text-amber-700",
+    },
+  ];
+
   const phoneNumber = "(31) 98440-0076";
   const whatsappUrl =
     "https://wa.me/5531984400076?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20presencial%20na%20Cl%C3%ADnica%20FAAZ.";
@@ -105,164 +213,284 @@ export default function Home() {
       <div className="pointer-events-none fixed inset-0 bg-grid-pattern-light opacity-60 z-0" />
 
       {/* TOP ANNOUNCEMENT BAR */}
-      <div className="relative z-30 bg-gradient-to-r from-amber-50/90 via-emerald-50/90 to-amber-50/90 border-b border-amber-200/50 text-center py-2 px-3 sm:px-4">
-        <p className="text-[11px] sm:text-xs md:text-sm text-slate-700 font-medium flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
-          <img
-            src="/logo-faaz.png"
-            alt="Logo FAAZ"
-            className="w-4 h-4 object-contain inline-block flex-shrink-0"
-          />
-          <span><strong>Clínica FAAZ</strong>: Consultas presenciais em Belo Horizonte com suporte no App</span>
-          <span className="hidden md:inline text-amber-600 font-bold">•</span>
+      <div className="relative z-30 bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-900 text-center py-2 px-3 sm:px-4 overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 animate-shimmer-slow bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <p className="relative text-[11px] sm:text-xs text-emerald-50 font-medium flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
+          <span className="inline-flex items-center gap-1.5 text-amber-200 font-bold tracking-widest uppercase text-[10px]">
+            <MapPin className="w-3 h-3" /> Belo Horizonte
+          </span>
+          <span className="hidden sm:inline text-emerald-400/50">|</span>
+          <span className="hidden sm:inline">Endocrinologia Avançada & Cirurgia Plástica • Consultas presenciais</span>
+          <span className="hidden md:inline text-emerald-400/50">|</span>
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold text-emerald-700 hover:text-emerald-800 underline underline-offset-4 transition-colors"
+            className="inline-flex items-center gap-1 text-amber-200 hover:text-white font-semibold transition-colors"
           >
-            Falar com a Recepção
+            Falar com a recepção <ArrowRight className="w-3 h-3" />
           </a>
         </p>
       </div>
 
-      {/* NAVBAR CLEAN LUXURY */}
-      <header className="relative z-40 border-b border-slate-200/70 backdrop-blur-xl bg-white/85 sticky top-0 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-          {/* Logo & Marca Clínica FAAZ */}
-          <Link href="/" className="flex items-center gap-3.5 group flex-shrink-0">
-            <div className="relative w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center flex-shrink-0 p-1 rounded-2xl bg-gradient-to-br from-amber-100/60 to-emerald-100/40 border border-amber-200/60 shadow-xs group-hover:scale-105 transition-transform duration-300">
-              <img
-                src="/logo-faaz.png"
-                alt="Clínica FAAZ Logo"
-                className="w-full h-full object-contain filter drop-shadow-xs"
-              />
+      {/* NAVBAR FLUTUANTE PREMIUM */}
+      <header className="sticky top-0 z-40 px-3 sm:px-5 pt-3 pb-1">
+        <div
+          className={`relative mx-auto transition-all duration-500 ease-out ${
+            scrolled ? "max-w-6xl" : "max-w-7xl"
+          }`}
+        >
+          {/* Borda em gradiente dourado → esmeralda → ciano */}
+          <div
+            className={`rounded-full p-[1.5px] bg-gradient-to-r from-amber-300 via-emerald-300 to-cyan-300 transition-shadow duration-500 ${
+              scrolled
+                ? "shadow-[0_18px_50px_-12px_rgba(15,23,42,0.25)]"
+                : "shadow-[0_10px_40px_-15px_rgba(16,185,129,0.35)]"
+            }`}
+          >
+            <div
+              className={`relative rounded-full bg-white/85 backdrop-blur-2xl flex items-center justify-between gap-3 pl-2 pr-2 transition-all duration-500 ${
+                scrolled ? "h-14" : "h-[70px]"
+              }`}
+            >
+              {/* Logo com anel dourado giratório */}
+              <Link href="/" className="flex items-center gap-3 group flex-shrink-0 pl-1">
+                <div
+                  className={`relative rounded-full overflow-hidden flex-shrink-0 transition-all duration-500 ${
+                    scrolled ? "w-10 h-10" : "w-12 h-12"
+                  }`}
+                >
+                  <div
+                    className="absolute -inset-1 animate-spin-slow"
+                    style={{
+                      background:
+                        "conic-gradient(from 0deg, #f59e0b, #fde68a, #10b981, #22d3ee, #f59e0b)",
+                    }}
+                  />
+                  <div className="absolute inset-[2px] rounded-full bg-white flex items-center justify-center">
+                    <img
+                      src="/logo-faaz.png"
+                      alt="Clínica FAAZ"
+                      className="w-[70%] h-[70%] object-contain group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-black text-base sm:text-lg tracking-tight text-slate-900 leading-none">
+                    CLÍNICA{" "}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600">
+                      FAAZ
+                    </span>
+                  </span>
+                  <span
+                    className={`text-[9px] sm:text-[10px] tracking-[0.18em] uppercase text-slate-500 font-semibold overflow-hidden transition-all duration-500 ${
+                      scrolled ? "max-h-0 opacity-0 mt-0" : "max-h-4 opacity-100 mt-1"
+                    }`}
+                  >
+                    Endocrinologia & Cirurgia Plástica
+                  </span>
+                </div>
+              </Link>
+
+              {/* Navegação Desktop */}
+              <nav className="hidden xl:flex items-center gap-1 text-[13px] font-semibold">
+                {/* Especialidades com Mega Menu */}
+                <div onMouseEnter={openMega} onMouseLeave={closeMega}>
+                  <button
+                    onClick={() => setMegaOpen((v) => !v)}
+                    className={`relative inline-flex items-center gap-1 px-3.5 py-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      megaOpen || activeSection === "jornada-faaz"
+                        ? activeLinkClass.emerald
+                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
+                    }`}
+                  >
+                    <span>Especialidades</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-300 ${megaOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                </div>
+
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.id;
+                  return (
+                    <a
+                      key={link.id}
+                      href={`#${link.id}`}
+                      className={`relative px-3.5 py-2 rounded-full transition-all duration-300 ${
+                        isActive
+                          ? activeLinkClass[link.accent]
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
+                      }`}
+                    >
+                      {link.id === "cirurgia-plastica" && (
+                        <Sparkles className="inline w-3.5 h-3.5 mr-1 -mt-0.5 text-cyan-500" />
+                      )}
+                      {link.label}
+                      <span
+                        className={`absolute left-1/2 -translate-x-1/2 -bottom-1 h-1 rounded-full transition-all duration-300 ${
+                          isActive ? `w-4 ${activeDotClass[link.accent]}` : "w-0 bg-transparent"
+                        }`}
+                      />
+                    </a>
+                  );
+                })}
+              </nav>
+
+              {/* Ações */}
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative overflow-hidden inline-flex items-center gap-2 rounded-full pl-1.5 pr-4 sm:pr-5 py-1.5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-emerald-600/30 hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+                >
+                  <span className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-white/45 to-transparent skew-x-[-20deg] animate-shimmer" />
+                  <span className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 ring-1 ring-white/30 flex items-center justify-center">
+                    <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </span>
+                  <span className="relative">
+                    Agendar<span className="hidden sm:inline"> Consulta</span>
+                  </span>
+                  <span className="relative flex w-2 h-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-200 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-300" />
+                  </span>
+                </a>
+
+                {/* Hamburger Mobile */}
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  aria-label="Abrir menu"
+                  className="xl:hidden w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-slate-800 transition-colors"
+                >
+                  {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                </button>
+              </div>
+
+              {/* Barra de progresso de leitura */}
+              <div className="pointer-events-none absolute bottom-0 left-10 right-10 h-[2px] rounded-full overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-amber-400 via-emerald-500 to-cyan-500 transition-[width] duration-150"
+                  style={{ width: `${scrollProgress}%` }}
+                />
+              </div>
             </div>
-            <div className="flex flex-col">
-              <span className="font-black text-lg sm:text-xl tracking-tight text-slate-900 leading-none">
-                CLÍNICA <span className="text-emerald-600">FAAZ</span>
-              </span>
-              <span className="text-[9px] sm:text-[10px] tracking-wider uppercase text-slate-500 font-semibold mt-1">
-                Endocrinologia & Cirurgia Plástica
-              </span>
-            </div>
-          </Link>
-
-          {/* Navegação Desktop */}
-          <nav className="hidden xl:flex items-center gap-6 2xl:gap-8 text-sm text-slate-600 font-semibold">
-            <a href="#a-clinica" className="hover:text-emerald-600 transition-colors">
-              A Clínica
-            </a>
-            <a href="#jornada-faaz" className="hover:text-emerald-600 transition-colors">
-              Especialidades
-            </a>
-            <a
-              href="#cirurgia-plastica"
-              className="text-slate-800 hover:text-cyan-700 transition-colors flex items-center gap-1.5"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-cyan-600" />
-              <span>Cirurgia Plástica</span>
-            </a>
-            <a href="#app-showcase" className="hover:text-emerald-600 transition-colors">
-              App Exclusivo
-            </a>
-            <a href="#depoimentos" className="hover:text-emerald-600 transition-colors">
-              Resultados
-            </a>
-            <a href="#faq" className="hover:text-emerald-600 transition-colors">
-              Dúvidas
-            </a>
-          </nav>
-
-          {/* Botão de Agendamento */}
-          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold px-4 sm:px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white transition-all shadow-md shadow-emerald-600/20 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <Calendar className="w-4 h-4 text-white flex-shrink-0" />
-              <span>Agendar Consulta</span>
-            </a>
-
-            {/* Botão Hamburger Mobile */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Abrir menu"
-              className="xl:hidden p-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:text-slate-900 transition-colors"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
           </div>
-        </div>
 
-        {/* MOBILE MENU DRAWER */}
-        {mobileMenuOpen && (
-          <div className="xl:hidden fixed inset-x-0 top-20 bg-white/98 border-b border-slate-200 backdrop-blur-2xl px-6 py-6 flex flex-col gap-4 shadow-xl z-50">
-            <nav className="flex flex-col gap-3 text-sm font-semibold text-slate-700">
-              <a
-                href="#a-clinica"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2 border-b border-slate-100 hover:text-emerald-600 transition-colors flex items-center justify-between"
-              >
-                <span>A Clínica FAAZ</span>
-                <ChevronDown className="w-4 h-4 -rotate-90 text-slate-400" />
-              </a>
-              <a
-                href="#jornada-faaz"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2 border-b border-slate-100 hover:text-emerald-600 transition-colors flex items-center justify-between"
-              >
-                <span>Especialidades Médicas</span>
-                <ChevronDown className="w-4 h-4 -rotate-90 text-slate-400" />
-              </a>
-              <a
-                href="#cirurgia-plastica"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2 border-b border-slate-100 text-cyan-700 hover:text-cyan-800 transition-colors flex items-center justify-between"
-              >
-                <span className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-cyan-600" />
-                  <span>Cirurgia Plástica</span>
+          {/* MEGA MENU — ESPECIALIDADES */}
+          <div
+            onMouseEnter={openMega}
+            onMouseLeave={closeMega}
+            className={`hidden xl:block absolute left-0 right-0 top-full pt-3 transition-all duration-300 ${
+              megaOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2 pointer-events-none"
+            }`}
+          >
+            <div className="rounded-3xl bg-white/95 backdrop-blur-2xl border border-slate-200 shadow-[0_30px_80px_-20px_rgba(15,23,42,0.35)] p-4">
+              <div className="grid grid-cols-3 gap-4">
+                {megaItems.map((item) => (
+                  <a
+                    key={item.tab}
+                    href={item.href}
+                    onClick={() => {
+                      setActiveTab(item.tab);
+                      setMegaOpen(false);
+                    }}
+                    className="group rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <div className="relative h-36 overflow-hidden">
+                      <img
+                        src={item.img}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent" />
+                      <span
+                        className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-white px-2.5 py-1 rounded-full ${item.tagClass}`}
+                      >
+                        {item.tag}
+                      </span>
+                      <span className="absolute bottom-3 left-3 text-white font-black text-lg drop-shadow">
+                        {item.title}
+                      </span>
+                    </div>
+                    <div className="p-3.5">
+                      <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+                      <span className={`mt-2 inline-flex items-center gap-1 text-xs font-bold ${item.linkClass}`}>
+                        Conhecer <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+              <div className="mt-4 flex items-center justify-between rounded-2xl bg-gradient-to-r from-amber-50 via-emerald-50 to-cyan-50 border border-slate-200/70 px-4 py-3 text-xs">
+                <span className="flex items-center gap-2 text-slate-700 font-medium">
+                  <Clock className="w-4 h-4 text-emerald-600" />
+                  Consultas presenciais em Belo Horizonte • Seg a Sex, 08h às 20h
                 </span>
-                <ChevronDown className="w-4 h-4 -rotate-90 text-cyan-600" />
-              </a>
-              <a
-                href="#app-showcase"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2 border-b border-slate-100 hover:text-emerald-600 transition-colors flex items-center justify-between"
-              >
-                <span>App Exclusivo FAAZ</span>
-                <ChevronDown className="w-4 h-4 -rotate-90 text-slate-400" />
-              </a>
-              <a
-                href="#depoimentos"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2 border-b border-slate-100 hover:text-emerald-600 transition-colors flex items-center justify-between"
-              >
-                <span>Casos de Sucesso</span>
-                <ChevronDown className="w-4 h-4 -rotate-90 text-slate-400" />
-              </a>
-              <a
-                href="#faq"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2 border-b border-slate-100 hover:text-emerald-600 transition-colors flex items-center justify-between"
-              >
-                <span>Perguntas Frequentes</span>
-                <ChevronDown className="w-4 h-4 -rotate-90 text-slate-400" />
-              </a>
-            </nav>
-
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 text-center py-3 rounded-xl bg-emerald-600 text-white font-bold text-sm shadow-md shadow-emerald-600/20"
-            >
-              Agendar Consulta no WhatsApp
-            </a>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800"
+                >
+                  Agendar pelo WhatsApp <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
           </div>
-        )}
+
+          {/* MENU MOBILE */}
+          {mobileMenuOpen && (
+            <div className="xl:hidden absolute left-0 right-0 top-full mt-3 rounded-3xl bg-white/97 backdrop-blur-2xl border border-slate-200 shadow-2xl p-4 max-h-[calc(100vh-8rem)] overflow-y-auto animate-menu-in">
+              <div className="grid grid-cols-3 gap-2.5 mb-4">
+                {megaItems.map((item) => (
+                  <a
+                    key={item.tab}
+                    href={item.href}
+                    onClick={() => {
+                      setActiveTab(item.tab);
+                      setMobileMenuOpen(false);
+                    }}
+                    className="relative h-28 rounded-2xl overflow-hidden"
+                  >
+                    <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+                    <span className="absolute bottom-2 left-2 right-2 text-white text-[11px] font-bold leading-tight">
+                      {item.title}
+                    </span>
+                  </a>
+                ))}
+              </div>
+
+              <nav className="flex flex-col text-sm font-semibold text-slate-700">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    href={`#${link.id}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`px-3 py-3 rounded-xl flex items-center justify-between transition-colors ${
+                      activeSection === link.id ? activeLinkClass[link.accent] : "hover:bg-slate-50"
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <ArrowRight className="w-4 h-4 text-slate-400" />
+                  </a>
+                ))}
+              </nav>
+
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/25"
+              >
+                <Calendar className="w-4 h-4" />
+                Agendar Consulta no WhatsApp
+              </a>
+            </div>
+          )}
+        </div>
       </header>
 
       {/* CONTEÚDO PRINCIPAL */}

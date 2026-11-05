@@ -35,6 +35,25 @@ import {
   Zap,
 } from "lucide-react";
 
+function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"endocrino" | "cirurgia" | "app">("endocrino");
@@ -169,6 +188,7 @@ export default function Home() {
   ];
 
   const phoneNumber = "(31) 98440-0076";
+  const instagramUrl = "https://www.instagram.com/clinicafaaz/";
   const whatsappUrl =
     "https://wa.me/5531984400076?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20presencial%20na%20Cl%C3%ADnica%20FAAZ.";
   const whatsappCirurgiaUrl =
@@ -313,6 +333,18 @@ export default function Home() {
 
               {/* Ações */}
               <div className="flex items-center gap-2 flex-shrink-0">
+                {/* Instagram Oficial no Desktop */}
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram da Clínica FAAZ (@clinicafaaz)"
+                  title="Siga @clinicafaaz no Instagram"
+                  className="hidden xl:inline-flex w-10 h-10 rounded-full border border-slate-200/90 hover:border-pink-300 text-slate-600 hover:text-pink-600 items-center justify-center hover:bg-pink-50/50 transition-all hover:scale-105"
+                >
+                  <InstagramIcon className="w-4 h-4" />
+                </a>
+
                 {/* Botão de Agendamento visível apenas em telas médias e grandes para evitar poluição e redundância no mobile */}
                 <a
                   href={whatsappUrl}
@@ -452,15 +484,27 @@ export default function Home() {
                 ))}
               </nav>
 
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/25"
-              >
-                <Calendar className="w-4 h-4" />
-                Agendar Consulta no WhatsApp
-              </a>
+              <div className="flex flex-col gap-2 mt-3">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/25"
+                >
+                  <Calendar className="w-4 h-4" />
+                  Agendar Consulta no WhatsApp
+                </a>
+
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-gradient-to-r from-pink-50 via-rose-50 to-amber-50/40 border border-pink-200 text-pink-700 font-bold text-xs hover:bg-pink-100/50 transition-colors"
+                >
+                  <InstagramIcon className="w-4 h-4 text-pink-600" />
+                  <span>Siga @clinicafaaz no Instagram</span>
+                </a>
+              </div>
             </div>
           )}
         </div>
@@ -1434,6 +1478,29 @@ export default function Home() {
                     <span className="text-slate-500 text-xs">Segunda a Sexta, das 08h às 20h</span>
                   </div>
                 </div>
+
+                {/* Destaque Instagram Oficial */}
+                <div className="pt-2">
+                  <a
+                    href={instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 p-3.5 rounded-2xl bg-gradient-to-r from-pink-50/80 via-white to-amber-50/60 border border-pink-200/80 hover:border-pink-300 shadow-xs hover:shadow-md transition-all group w-full sm:w-auto"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                      <InstagramIcon className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-900 group-hover:text-pink-600 transition-colors flex items-center gap-1.5">
+                        <span>Acompanhe Nossos Casos & Bastidores</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-pink-600 group-hover:translate-x-0.5 transition-all" />
+                      </div>
+                      <div className="text-[11px] text-slate-500">
+                        Perfil oficial no Instagram: <strong className="text-pink-700 font-semibold">@clinicafaaz</strong>
+                      </div>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -1613,6 +1680,17 @@ export default function Home() {
               <div className="text-[11px] text-slate-400">
                 Diretoria Técnica com RQE e CRM-MG.
               </div>
+              <div className="pt-1">
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 hover:border-pink-300 hover:bg-pink-50/60 text-slate-700 hover:text-pink-600 font-semibold text-xs transition-all group"
+                >
+                  <InstagramIcon className="w-4 h-4 text-pink-600 group-hover:scale-110 transition-transform" />
+                  <span>@clinicafaaz no Instagram</span>
+                </a>
+              </div>
             </div>
 
             {/* Coluna 2: Navegação */}
@@ -1643,6 +1721,17 @@ export default function Home() {
                 <li className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
                   <span>Seg a Sex, 08h às 20h</span>
+                </li>
+                <li className="flex items-center gap-1.5 pt-1">
+                  <InstagramIcon className="w-3.5 h-3.5 text-pink-600 flex-shrink-0" />
+                  <a
+                    href={instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-pink-600 transition-colors font-medium text-slate-600"
+                  >
+                    @clinicafaaz
+                  </a>
                 </li>
               </ul>
             </div>

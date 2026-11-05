@@ -212,78 +212,52 @@ export default function Home() {
       <div className="pointer-events-none fixed inset-0 bg-luxury-glow z-0" />
       <div className="pointer-events-none fixed inset-0 bg-grid-pattern-light opacity-60 z-0" />
 
-      {/* TOP ANNOUNCEMENT BAR */}
-      <div className="relative z-30 bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-900 text-center py-2 px-3 sm:px-4 overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 animate-shimmer-slow bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <p className="relative text-[11px] sm:text-xs text-emerald-50 font-medium flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
-          <span className="inline-flex items-center gap-1.5 text-amber-200 font-bold tracking-widest uppercase text-[10px]">
-            <MapPin className="w-3 h-3" /> Belo Horizonte
-          </span>
-          <span className="hidden sm:inline text-emerald-400/50">|</span>
-          <span className="hidden sm:inline">Endocrinologia Avançada & Cirurgia Plástica • Consultas presenciais</span>
-          <span className="hidden md:inline text-emerald-400/50">|</span>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-amber-200 hover:text-white font-semibold transition-colors"
-          >
-            Falar com a recepção <ArrowRight className="w-3 h-3" />
-          </a>
-        </p>
-      </div>
-
-      {/* NAVBAR FLUTUANTE PREMIUM */}
-      <header className="sticky top-0 z-40 px-3 sm:px-5 pt-3 pb-1">
+      {/* NAVBAR FLUTUANTE PREMIUM CLEAN LUXURY */}
+      <header className="sticky top-0 z-40 px-3 sm:px-6 pt-3 sm:pt-4 pb-1">
         <div
           className={`relative mx-auto transition-all duration-500 ease-out ${
             scrolled ? "max-w-6xl" : "max-w-7xl"
           }`}
         >
-          {/* Borda em gradiente dourado → esmeralda → ciano */}
+          {/* Borda sofisticada com reflexo em ouro e esmeralda */}
           <div
-            className={`rounded-full p-[1.5px] bg-gradient-to-r from-amber-300 via-emerald-300 to-cyan-300 transition-shadow duration-500 ${
+            className={`rounded-full p-[1.5px] bg-gradient-to-r from-amber-400/80 via-emerald-400/70 to-amber-400/80 transition-all duration-500 ${
               scrolled
-                ? "shadow-[0_18px_50px_-12px_rgba(15,23,42,0.25)]"
-                : "shadow-[0_10px_40px_-15px_rgba(16,185,129,0.35)]"
+                ? "shadow-[0_16px_40px_-12px_rgba(15,23,42,0.22)]"
+                : "shadow-[0_10px_35px_-10px_rgba(217,163,30,0.25)]"
             }`}
           >
             <div
-              className={`relative rounded-full bg-white/85 backdrop-blur-2xl flex items-center justify-between gap-3 pl-2 pr-2 transition-all duration-500 ${
-                scrolled ? "h-14" : "h-[70px]"
+              className={`relative rounded-full bg-white/95 backdrop-blur-2xl flex items-center justify-between gap-3 pl-2.5 pr-2 transition-all duration-500 ${
+                scrolled ? "h-14" : "h-[74px]"
               }`}
             >
-              {/* Logo com anel dourado giratório */}
-              <Link href="/" className="flex items-center gap-3 group flex-shrink-0 pl-1">
+              {/* Logo & Marca Oficial Clínica FAAZ com Destaque Especial */}
+              <Link href="/" className="flex items-center gap-3.5 group flex-shrink-0 pl-1">
+                {/* Emblema Dourado Majestoso da Fênix */}
                 <div
-                  className={`relative rounded-full overflow-hidden flex-shrink-0 transition-all duration-500 ${
-                    scrolled ? "w-10 h-10" : "w-12 h-12"
+                  className={`relative rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300 p-1.5 bg-gradient-to-b from-amber-50 via-white to-amber-100/70 border border-amber-300/80 shadow-md shadow-amber-500/15 group-hover:border-amber-400 group-hover:scale-105 group-hover:shadow-amber-500/30 ${
+                    scrolled ? "w-10 h-10" : "w-12 h-12 sm:w-13 sm:h-13"
                   }`}
                 >
-                  <div
-                    className="absolute -inset-1 animate-spin-slow"
-                    style={{
-                      background:
-                        "conic-gradient(from 0deg, #f59e0b, #fde68a, #10b981, #22d3ee, #f59e0b)",
-                    }}
+                  <img
+                    src="/logo-faaz.png"
+                    alt="Clínica FAAZ - Fênix Dourada Oficial"
+                    className="w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(212,175,55,0.45)] group-hover:drop-shadow-[0_4px_12px_rgba(212,175,55,0.7)] transition-all duration-300"
                   />
-                  <div className="absolute inset-[2px] rounded-full bg-white flex items-center justify-center">
-                    <img
-                      src="/logo-faaz.png"
-                      alt="Clínica FAAZ"
-                      className="w-[70%] h-[70%] object-contain group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </div>
+                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 ring-2 ring-white animate-pulse" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-black text-base sm:text-lg tracking-tight text-slate-900 leading-none">
-                    CLÍNICA{" "}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="font-extrabold text-xs sm:text-sm tracking-[0.12em] text-slate-800 leading-none">
+                      CLÍNICA
+                    </span>
+                    <span className="font-black text-lg sm:text-xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 leading-none">
                       FAAZ
                     </span>
-                  </span>
+                  </div>
                   <span
-                    className={`text-[9px] sm:text-[10px] tracking-[0.18em] uppercase text-slate-500 font-semibold overflow-hidden transition-all duration-500 ${
+                    className={`text-[9px] sm:text-[10px] tracking-[0.14em] uppercase font-bold text-amber-800/80 overflow-hidden transition-all duration-500 ${
                       scrolled ? "max-h-0 opacity-0 mt-0" : "max-h-4 opacity-100 mt-1"
                     }`}
                   >
@@ -497,18 +471,25 @@ export default function Home() {
       <main className="relative z-10 flex-1 flex flex-col">
         {/* HERO SECTION DE ALTO IMPACTO (CLEAN LUXURY) */}
         <section className="relative pt-8 pb-16 sm:pt-14 sm:pb-24 lg:pt-16 lg:pb-28 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Marca d'água monumental sutil da Fênix no background */}
+          <div className="pointer-events-none absolute right-4 lg:right-16 top-1/2 -translate-y-1/2 w-80 sm:w-[440px] h-80 sm:h-[440px] opacity-[0.035] select-none z-0">
+            <img src="/logo-faaz.png" alt="" className="w-full h-full object-contain" />
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
               {/* Lado Esquerdo: Mensagem e Ação */}
               <div className="lg:col-span-7 flex flex-col items-start text-left">
-                {/* Badge Dourada com Logo */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-200/80 bg-amber-50/80 text-amber-900 text-xs font-semibold mb-5 backdrop-blur-md shadow-xs">
-                  <img
-                    src="/logo-faaz.png"
-                    alt="Logo FAAZ"
-                    className="w-4 h-4 object-contain flex-shrink-0"
-                  />
-                  <span>CLÍNICA FAAZ • SEDE PRÓPRIA EM BELO HORIZONTE</span>
+                {/* Selo Heráldico de Prestígio com a Logo Oficial FAAZ */}
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-amber-300/90 bg-gradient-to-r from-amber-50 via-white to-amber-50 text-amber-950 text-xs sm:text-sm font-bold mb-6 backdrop-blur-md shadow-md shadow-amber-500/10">
+                  <div className="relative w-6 h-6 rounded-lg bg-gradient-to-br from-amber-200 via-amber-100 to-white border border-amber-300 p-0.5 flex items-center justify-center shadow-xs flex-shrink-0">
+                    <img
+                      src="/logo-faaz.png"
+                      alt="Logo FAAZ"
+                      className="w-full h-full object-contain filter drop-shadow-[0_1px_3px_rgba(212,175,55,0.5)]"
+                    />
+                  </div>
+                  <span className="tracking-wide">CLÍNICA FAAZ • EXCELÊNCIA MÉDICA EM BELO HORIZONTE</span>
                 </div>
 
                 {/* Título de Impacto */}
@@ -579,6 +560,25 @@ export default function Home() {
               {/* Lado Direito: Composição Visual com Imagem Real + Widgets Flutuantes */}
               <div className="lg:col-span-5 relative w-full flex justify-center">
                 <div className="relative w-full max-w-md lg:max-w-none">
+                  {/* Selo Flutuante de Prestígio com a Logo Oficial FAAZ */}
+                  <div className="absolute -top-3 -right-2 sm:-right-4 z-20 flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-amber-300/90 shadow-xl shadow-amber-900/10 animate-float-slow">
+                    <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-100 via-amber-50 to-white border border-amber-300 flex items-center justify-center p-1 shadow-inner flex-shrink-0">
+                      <img
+                        src="/logo-faaz.png"
+                        alt="Brasão FAAZ"
+                        className="w-full h-full object-contain filter drop-shadow-[0_2px_4px_rgba(212,175,55,0.4)]"
+                      />
+                    </div>
+                    <div className="flex flex-col text-left">
+                      <span className="text-[10px] font-black tracking-wider uppercase text-slate-900 leading-tight">
+                        CLÍNICA FAAZ
+                      </span>
+                      <span className="text-[9px] font-bold text-amber-700 leading-none">
+                        Corpo Clínico RQE • BH
+                      </span>
+                    </div>
+                  </div>
+
                   {/* Foto de Alto Padrão da Consulta Médica */}
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] sm:aspect-[16/11]">
                     <img
@@ -1586,15 +1586,27 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-slate-100">
             {/* Coluna 1: Marca FAAZ */}
             <div className="space-y-3 md:col-span-2">
-              <div className="flex items-center gap-3">
-                <img
-                  src="/logo-faaz.png"
-                  alt="Clínica FAAZ"
-                  className="w-9 h-9 object-contain"
-                />
-                <span className="font-extrabold text-lg text-slate-900">
-                  CLÍNICA <span className="text-emerald-600">FAAZ</span>
-                </span>
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-50 via-white to-amber-100/60 border border-amber-300/80 p-1.5 shadow-sm flex items-center justify-center flex-shrink-0">
+                  <img
+                    src="/logo-faaz.png"
+                    alt="Clínica FAAZ - Fênix Dourada"
+                    className="w-full h-full object-contain filter drop-shadow-[0_2px_6px_rgba(212,175,55,0.4)]"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="font-extrabold text-sm tracking-[0.1em] text-slate-800 leading-none">
+                      CLÍNICA
+                    </span>
+                    <span className="font-black text-xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 leading-none">
+                      FAAZ
+                    </span>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-wider font-bold text-amber-800/80 mt-1">
+                    Endocrinologia & Cirurgia Plástica
+                  </span>
+                </div>
               </div>
               <p className="text-slate-500 max-w-sm leading-relaxed">
                 Centro médico especializado em <strong>Endocrinologia Avançada</strong> e <strong>Cirurgia Plástica</strong> em Belo Horizonte. Consultas presenciais aprofundadas com acompanhamento diário no aplicativo EnDoc 2.0 (Endocrinologia).

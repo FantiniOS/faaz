@@ -313,30 +313,29 @@ export default function Home() {
 
               {/* Ações */}
               <div className="flex items-center gap-2 flex-shrink-0">
+                {/* Botão de Agendamento visível apenas em telas médias e grandes para evitar poluição e redundância no mobile */}
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden inline-flex items-center gap-2 rounded-full pl-1.5 pr-4 sm:pr-5 py-1.5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-emerald-600/30 hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+                  className="hidden md:inline-flex group relative overflow-hidden items-center gap-2 rounded-full pl-2 pr-5 py-2 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-emerald-600/30 hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
                 >
                   <span className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-white/45 to-transparent skew-x-[-20deg] animate-shimmer" />
                   <span className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 ring-1 ring-white/30 flex items-center justify-center">
                     <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </span>
-                  <span className="relative">
-                    Agendar<span className="hidden sm:inline"> Consulta</span>
-                  </span>
+                  <span className="relative">Agendar Consulta</span>
                   <span className="relative flex w-2 h-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-200 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-300" />
                   </span>
                 </a>
 
-                {/* Hamburger Mobile */}
+                {/* Hamburger Mobile com design premium */}
                 <button
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   aria-label="Abrir menu"
-                  className="xl:hidden w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-slate-800 transition-colors"
+                  className="xl:hidden w-11 h-11 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-slate-800 transition-colors shadow-md"
                 >
                   {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </button>
@@ -1660,17 +1659,20 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* BOTÃO FLUTUANTE DE WHATSAPP */}
+      {/* BOTÃO FLUTUANTE DE WHATSAPP (Ação principal em mobile e desktop) */}
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar no WhatsApp com a Clínica FAAZ"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-600 text-white shadow-2xl hover:bg-emerald-500 transition-all duration-300 hover:scale-105 group"
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-2xl shadow-emerald-950/30 hover:shadow-emerald-600/50 hover:scale-105 active:scale-95 transition-all duration-300 group border border-emerald-400/40"
       >
-        <div className="w-2.5 h-2.5 rounded-full bg-emerald-300 animate-pulse" />
-        <MessageCircle className="w-5 h-5 text-white" />
-        <span className="text-xs font-bold pr-1">Agendar Consulta</span>
+        <span className="relative flex w-2.5 h-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-200 opacity-75" />
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-300" />
+        </span>
+        <MessageCircle className="w-5 h-5 text-white transition-transform group-hover:scale-110 flex-shrink-0" />
+        <span className="text-xs sm:text-sm font-bold tracking-tight pr-0.5">Agendar Consulta</span>
       </a>
     </div>
   );
